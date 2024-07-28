@@ -9,13 +9,23 @@ namespace Exam02.Exams
 {
     internal abstract class Exam
     {
+        #region attributes
+        protected Dictionary<int, string[]> dic = new Dictionary<int, string[]>();
         protected Dictionary<int, string[]> ResDic = new Dictionary<int, string[]>();
         protected Stopwatch stopwatch = new Stopwatch();
         protected string message;
-        public TimeSpan Time{ get; set; }
-        public int NumberOfQuestion {  get; set; }
-        public abstract void ShowExam(ref Dictionary<int , string[]> d , ref int g, ref int tg);
-        public void ShowResult( Dictionary<int, string[]> Resdic,  int grade,  int totalGrade, Stopwatch stopwatch)
+        protected int grade = 0;
+        protected int totalGrade = 0;
+        #endregion
+        #region properties
+        public TimeSpan Time { get; set; }
+        public int NumberOfQuestion { get; set; }
+        #endregion
+        #region abstract method
+        public abstract void ShowExam();
+        #endregion
+        #region methods
+        public void ShowResult()
         {
             if (message != null)
             {
@@ -32,7 +42,8 @@ namespace Exam02.Exams
             }
             Console.WriteLine($"Your grade is {grade} from {totalGrade}");
             Console.WriteLine($"Time = {stopwatch.Elapsed}");
-        }
+        } 
+        #endregion
 
     }
 }

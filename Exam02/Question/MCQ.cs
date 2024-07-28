@@ -10,11 +10,14 @@ namespace Exam02.Question
 {
     internal class MCQ: Question
     {
+        #region constructor
         public MCQ()
         {
             header = "MCQ question";
         }
+        #endregion
 
+        #region methods
         public override void CreateQuestion()
         {
             Console.WriteLine(header);
@@ -30,24 +33,25 @@ namespace Exam02.Question
             Console.WriteLine("please enter choice number 1 :");
             Answer a1 = new Answer() { Id = 1, Text = Console.ReadLine() ?? "no Answer" };
             Console.WriteLine("please enter choice number 2 :");
-            Answer a2 = new Answer() { Id = 2, Text = Console.ReadLine() ?? "no Answer"};
+            Answer a2 = new Answer() { Id = 2, Text = Console.ReadLine() ?? "no Answer" };
             Console.WriteLine("please enter choice number 3 :");
             Answer a3 = new Answer() { Id = 3, Text = Console.ReadLine() ?? "no Answer" };
-            
+
             int id;
             do
             {
                 Console.WriteLine("please enter the right answer id :");
-            } while (!int.TryParse(Console.ReadLine(), out id) || (id != 1 && id != 2 && id !=3));
-            Answer a4 = new Answer() 
-            { 
+            } while (!int.TryParse(Console.ReadLine(), out id) || (id != 1 && id != 2 && id != 3));
+            Answer a4 = new Answer()
+            {
                 Id = id
             };
             answerList = new Answer[]
             {
                 a1,a2,a3,a4
             };
-            
-        }
+
+        } 
+        #endregion
     }
 }

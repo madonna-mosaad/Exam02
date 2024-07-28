@@ -11,11 +11,12 @@ namespace Exam02.Exams
     internal class Practical : Exam
     {
 
-        public override void ShowExam(ref Dictionary<int, string[]> dic , ref int grade , ref int totalGrade)
+        #region methods
+        public override void ShowExam()
         {
-            
+
             MCQ mcq;
-            for (int i = 0; i < NumberOfQuestion; i++) 
+            for (int i = 0; i < NumberOfQuestion; i++)
             {
                 mcq = new MCQ();
                 mcq.CreateQuestion();
@@ -66,21 +67,23 @@ namespace Exam02.Exams
                     do
                     {
                         Console.WriteLine("please enter the answer id :");
-                    } while (!int.TryParse(Console.ReadLine(), out RA ) || (RA != 1 && RA !=2 && RA !=3));
+                    } while (!int.TryParse(Console.ReadLine(), out RA) || (RA != 1 && RA != 2 && RA != 3));
 
-                    if (dic[i][RA+2] == dic[i][6])
+                    if (dic[i][RA + 2] == dic[i][6])
                     {
                         bool flag = int.TryParse(dic[i][2], out int x);
                         grade += x;
                     }
                     ResDic[i] = new string[] { dic[i][1], dic[i][6], dic[i][RA + 2] };
                 }
+                stopwatch.Stop();
+                Console.Clear();
+                ShowResult();
             }
-            stopwatch.Stop();
-            Console.Clear();
-            ShowResult(ResDic, grade, totalGrade, stopwatch);
 
-        }
-        
+
+        } 
+        #endregion
+
     }
 }
