@@ -52,7 +52,7 @@ namespace Exam02
             } while (!int.TryParse(Console.ReadLine(), out N));
             exam.NumberOfQuestion = N;
             Console.Clear();
-            exam.ShowExam(ref dic,ref grade,ref totalGrade);
+            exam.ShowExam();
             
             
         }
