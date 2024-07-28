@@ -10,7 +10,8 @@ namespace Exam02.Exams
 {
     internal class Final : Exam
     {
-        public override void ShowExam(ref Dictionary<int, string[]> dic , ref int grade , ref int totalGrade)
+        #region methods
+        public override void ShowExam()
         {
             MCQ mcq;
             T_F tf;
@@ -70,7 +71,7 @@ namespace Exam02.Exams
                 Console.Clear();
                 for (int i = 0; i < NumberOfQuestion; i++)
                 {
-                    
+
                     stopwatch.Start();
                     if (stopwatch.Elapsed >= Time)
                     {
@@ -95,7 +96,7 @@ namespace Exam02.Exams
                             Console.WriteLine("please enter the answer id :");
                         } while (!int.TryParse(Console.ReadLine(), out RA) || (RA != 1 && RA != 2 && RA != 3));
 
-                        if (dic[i][RA+2] == dic[i][6])
+                        if (dic[i][RA + 2] == dic[i][6])
                         {
                             bool flag = int.TryParse(dic[i][2], out int x);
                             grade += x;
@@ -118,22 +119,24 @@ namespace Exam02.Exams
                             Console.WriteLine("please enter the answer id :");
                         } while (!int.TryParse(Console.ReadLine(), out RA) || (RA != 1 && RA != 2));
 
-                        if (dic[i][RA+2] == dic[i][5])
+                        if (dic[i][RA + 2] == dic[i][5])
                         {
                             bool flag = int.TryParse(dic[i][2], out int x);
                             grade += x;
                         }
                         ResDic[i] = new string[] { dic[i][1], dic[i][5], dic[i][RA + 2] };
                     }
-                    
+
                 }
+                Console.Clear();
+                stopwatch.Stop();
+                ShowResult();
 
             }
-            Console.Clear();
-            stopwatch.Stop();
-            ShowResult( ResDic, grade, totalGrade,stopwatch);
 
-        }
-        
+
+        } 
+        #endregion
+
     }
 }

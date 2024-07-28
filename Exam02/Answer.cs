@@ -8,7 +8,9 @@ namespace Exam02
 {
     internal class Answer
     {
-        public int Id {  get; set; }
-        public string Text {  get; set; }
+        #region properties
+        public int Id { get; set; }
+        public string Text { get; set; } 
+        #endregion
     }
 }
