@@ -17,7 +17,7 @@ namespace Exam02.Question
         {
             Console.WriteLine(header);
             Console.WriteLine("please enter the Question body : ");
-            Body = Console.ReadLine();
+            Body = Console.ReadLine() ?? "no Body";
             int M;
             do
             {
@@ -32,7 +32,8 @@ namespace Exam02.Question
             } while (!int.TryParse(Console.ReadLine(), out id) || (id !=1 && id !=2));
             Answer a = new Answer()
             {
-                Id = id
+                Id = id,
+                
             };
             answerList = new Answer[]
             {

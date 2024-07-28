@@ -6,6 +6,7 @@
         {
             Subject subject = new Subject(1, "Math");
             subject.CreateExam();
+            
         }
     }
 }

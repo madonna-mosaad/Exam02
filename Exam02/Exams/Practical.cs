@@ -1,6 +1,7 @@
 ﻿using Exam02.Question;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace Exam02.Exams
 
         public override void ShowExam(ref Dictionary<int, string[]> dic , ref int grade , ref int totalGrade)
         {
+            
             MCQ mcq;
             for (int i = 0; i < NumberOfQuestion; i++) 
             {
@@ -29,6 +31,7 @@ namespace Exam02.Exams
                     mcq.AnswerList[2].Text,
                     mcq.AnswerList[mcq.AnswerList[3].Id-1].Text
                 };
+                Console.Clear();
             }
             Y_N ans;
             do
@@ -36,14 +39,21 @@ namespace Exam02.Exams
                 Console.WriteLine("Do you want to start the exam (Y|N)");
 
             } while (!Enum.TryParse(Console.ReadLine(), true, out ans));
-
+            Console.Clear();
             if ((ans & ((Y_N)1)) == ((Y_N)1))
             {
+
                 //0:header ,1:body , 2:mark ,3:id1 text ,4:id2 text , 5:id3 text ,6:right id text
                 Console.Clear();
                 for (int i = 0; i < NumberOfQuestion; i++)
                 {
+                    stopwatch.Start();
+                    if (stopwatch.Elapsed >= Time)
+                    {
 
+                        message = "time out !";
+                        break;
+                    }
                     Console.WriteLine($"{dic[i][0]}   Mark{dic[i][2]}");
                     Console.WriteLine();
                     Console.WriteLine(dic[i][1]);
@@ -63,8 +73,14 @@ namespace Exam02.Exams
                         bool flag = int.TryParse(dic[i][2], out int x);
                         grade += x;
                     }
+                    ResDic[i] = new string[] { dic[i][1], dic[i][6], dic[i][RA + 2] };
                 }
-             }
+            }
+            stopwatch.Stop();
+            Console.Clear();
+            ShowResult(ResDic, grade, totalGrade, stopwatch);
+
         }
+        
     }
 }

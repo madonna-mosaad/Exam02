@@ -53,9 +53,10 @@ namespace Exam02.Exams
                         Convert.ToString(tf.Mark),
                         tf.AnswerList[0].Text,
                         tf.AnswerList[1].Text,
-                        tf.AnswerList[2].Text
+                        tf.AnswerList[tf.AnswerList[2].Id-1].Text
                     };
                 }
+                Console.Clear();
             }
             Y_N ans;
             do
@@ -63,12 +64,21 @@ namespace Exam02.Exams
                 Console.WriteLine("Do you want to start the exam (Y|N)");
 
             } while (!Enum.TryParse(Console.ReadLine(), true, out ans));
-
+            Console.Clear();
             if ((ans & ((Y_N)1)) == ((Y_N)1))
             {
                 Console.Clear();
                 for (int i = 0; i < NumberOfQuestion; i++)
                 {
+                    
+                    stopwatch.Start();
+                    if (stopwatch.Elapsed >= Time)
+                    {
+
+                        message = "time out";
+                        break;
+                    }
+
                     if (dic[i][0] == "MCQ question")
                     {
                         Console.WriteLine($"{dic[i][0]}   Mark{dic[i][2]}");
@@ -90,6 +100,7 @@ namespace Exam02.Exams
                             bool flag = int.TryParse(dic[i][2], out int x);
                             grade += x;
                         }
+                        ResDic[i] = new string[] { dic[i][1], dic[i][6], dic[i][RA + 2] };
                     }
                     else if (dic[i][0] == "True or False question")
                     {
@@ -112,11 +123,17 @@ namespace Exam02.Exams
                             bool flag = int.TryParse(dic[i][2], out int x);
                             grade += x;
                         }
+                        ResDic[i] = new string[] { dic[i][1], dic[i][5], dic[i][RA + 2] };
                     }
+                    
                 }
 
             }
+            Console.Clear();
+            stopwatch.Stop();
+            ShowResult( ResDic, grade, totalGrade,stopwatch);
 
         }
+        
     }
 }

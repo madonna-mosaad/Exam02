@@ -13,14 +13,14 @@ namespace Exam02.Question
         public string Header { 
             get 
             {
-                return header;
+                return header ;
             } 
         }
         public Answer[] AnswerList 
         { 
             get 
             { 
-                return answerList; 
+                return answerList ; 
             } 
         }
         public string Body { get; set; }

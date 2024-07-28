@@ -43,8 +43,8 @@ namespace Exam02
             do
             {
                 Console.WriteLine("please enter the time of exam (30 min to 180 min) : ");
-            } while (!int.TryParse(Console.ReadLine(), out T) || (T<30 || T>180));
-            exam.Time = T;
+            } while (!int.TryParse(Console.ReadLine(), out T) || (T<0 || T>180));
+            exam.Time = TimeSpan.FromMinutes(T);
             int N;
             do
             {

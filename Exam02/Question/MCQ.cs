@@ -19,7 +19,7 @@ namespace Exam02.Question
         {
             Console.WriteLine(header);
             Console.WriteLine("please enter the Question body : ");
-            Body = Console.ReadLine();
+            Body = Console.ReadLine() ?? "no question";
             int M;
             do
             {
@@ -28,11 +28,11 @@ namespace Exam02.Question
             Mark = M;
             Console.WriteLine("choices of question");
             Console.WriteLine("please enter choice number 1 :");
-            Answer a1 = new Answer() { Id = 1, Text = Console.ReadLine() };
+            Answer a1 = new Answer() { Id = 1, Text = Console.ReadLine() ?? "no Answer" };
             Console.WriteLine("please enter choice number 2 :");
-            Answer a2 = new Answer() { Id = 2, Text = Console.ReadLine() };
+            Answer a2 = new Answer() { Id = 2, Text = Console.ReadLine() ?? "no Answer"};
             Console.WriteLine("please enter choice number 3 :");
-            Answer a3 = new Answer() { Id = 3, Text = Console.ReadLine() };
+            Answer a3 = new Answer() { Id = 3, Text = Console.ReadLine() ?? "no Answer" };
             
             int id;
             do
